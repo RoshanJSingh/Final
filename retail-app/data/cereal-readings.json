@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "coordinate_system": "yxyx_1000",
+  "products": [
+    {
+      "instance_id": "manual-0",
+      "product_name_text": "Corn Chex",
+      "visible_text": "Corn Chex",
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "variant_unreadable",
+        "pack_count_unreadable"
+      ],
+      "box_2d": null
+    },
+    {
+      "instance_id": "manual-1",
+      "product_name_text": "Rice Chex",
+      "visible_text": "Rice Chex",
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "variant_unreadable",
+        "pack_count_unreadable"
+      ],
+      "box_2d": null
+    },
+    {
+      "instance_id": "manual-2",
+      "product_name_text": "Honey Nut Cheerios",
+      "visible_text": "Honey Nut Cheerios",
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "variant_unreadable",
+        "pack_count_unreadable"
+      ],
+      "box_2d": null
+    }
+  ],
+  "labels": []
+}

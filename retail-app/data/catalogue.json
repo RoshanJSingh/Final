@@ -1,0 +1,112 @@
+{
+  "version": "demo-1",
+  "notice": "Simulated assortment and sizes, not verified product records. No GTINs or licensed packshots supplied.",
+  "products": [
+    {
+      "sku_id": "DEMO-001",
+      "brand": "General Mills",
+      "name": "Corn Chex",
+      "variant": "Original",
+      "size": "12 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-002",
+      "brand": "General Mills",
+      "name": "Corn Chex",
+      "variant": "Original",
+      "size": "18 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-003",
+      "brand": "General Mills",
+      "name": "Rice Chex",
+      "variant": "Original",
+      "size": "12 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-004",
+      "brand": "General Mills",
+      "name": "Rice Chex",
+      "variant": "Original",
+      "size": "18 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-005",
+      "brand": "General Mills",
+      "name": "Honey Nut Cheerios",
+      "variant": "Original",
+      "size": "10.8 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-006",
+      "brand": "General Mills",
+      "name": "Honey Nut Cheerios",
+      "variant": "Original",
+      "size": "18.8 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-007",
+      "brand": "Demo Pantry",
+      "name": "Oat Rings",
+      "variant": "Original",
+      "size": "12 oz",
+      "pack_count": 1
+    },
+    {
+      "sku_id": "DEMO-008",
+      "brand": "Demo Pantry",
+      "name": "Oat Rings",
+      "variant": "Original",
+      "size": "20 oz",
+      "pack_count": 1
+    }
+  ],
+  "allocations": [
+    {
+      "allocation_id": "ALLOC-0",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-001"
+    },
+    {
+      "allocation_id": "ALLOC-1",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-002"
+    },
+    {
+      "allocation_id": "ALLOC-2",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-003"
+    },
+    {
+      "allocation_id": "ALLOC-3",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-004"
+    },
+    {
+      "allocation_id": "ALLOC-4",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-005"
+    },
+    {
+      "allocation_id": "ALLOC-5",
+      "bay_id": "cereal",
+      "sku_id": "DEMO-006"
+    },
+    {
+      "allocation_id": "ALLOC-6",
+      "bay_id": "pantry",
+      "sku_id": "DEMO-007"
+    },
+    {
+      "allocation_id": "ALLOC-7",
+      "bay_id": "pantry",
+      "sku_id": "DEMO-008"
+    }
+  ]
+}

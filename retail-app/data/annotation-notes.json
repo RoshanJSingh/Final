@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "source": "retail-images/01_cereal_variants_and_gaps.jpg",
+  "method": "Limited manual visual transcription during development, before any inference. Not exhaustive, independently reviewed or held-out evaluation truth.",
+  "fields": "Only readable product names; brand, variant, size, pack and location left unknown.",
+  "publisher_boxes": "Original Product/Price annotation objects remain untouched in retail-images/annotations. They do not carry SKU identity.",
+  "evaluation": "No grocery accuracy or facing metric measured. Need independent SKU annotations and held-out capture sessions before evaluation."
+}
