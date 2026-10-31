@@ -1,0 +1,96 @@
+{
+  "retrieved": "2026-10-31",
+  "publisher": "Humans in the Loop",
+  "dataset": "Supermarket Shelves Dataset",
+  "publisher_url": "https://humansintheloop.org/resources/datasets/supermarket-shelves-dataset/",
+  "download_page": "https://www.kaggle.com/datasets/humansintheloop/supermarket-shelves-dataset",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/humansintheloop/supermarket-shelves-dataset",
+  "publisher_declared_license": "CC0 1.0",
+  "notes": "Six original JPEGs copied byte-for-byte from publisher account archive. Generic retail scenes; store/capture date unverified. Product/Price boxes are supplied, not exact SKU identities or stockout ground truth. Preview is resized for browsing only. No inference run.",
+  "images": [
+    {
+      "file": "01_cereal_variants_and_gaps.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/021.jpg",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 2772385,
+      "sha256": "611eabd697c798990ae31a6e07371d4b57a8217c7551bba585cfe8b5e3efba74",
+      "annotation_file": "annotations/01_cereal_variants_and_gaps.json",
+      "annotation_counts": {
+        "Price": 18,
+        "Product": 72
+      },
+      "suggested_use": "Best starting scene: readable cereal names, variants, repeated facings and visible gaps. Some packaging is cropped/occluded. Great Value branding is visible; do not represent this as Albertsons."
+    },
+    {
+      "file": "02_soft_drinks_and_multipacks.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/022.jpg",
+      "width": 4032,
+      "height": 3024,
+      "bytes": 2514128,
+      "sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+      "annotation_file": "annotations/02_soft_drinks_and_multipacks.json",
+      "annotation_counts": {
+        "Price": 19,
+        "Product": 311
+      },
+      "suggested_use": "Bottles versus multipacks, repeated products and gaps; reflective plastic and partially hidden packages."
+    },
+    {
+      "file": "03_canned_vegetable_variants.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/027.jpg",
+      "width": 5472,
+      "height": 3648,
+      "bytes": 3210054,
+      "sha256": "5e04beda9876e36cf07f10f1f8ae4dd0d9251848829028319d3b1c8553184c04",
+      "annotation_file": "annotations/03_canned_vegetable_variants.json",
+      "annotation_counts": {
+        "Product": 61,
+        "Price": 19
+      },
+      "suggested_use": "Near-identical GOYA packaging with different contents; stacked instances, bilingual text and softer focus at edges."
+    },
+    {
+      "file": "04_canned_seafood_and_shelf_labels.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/016.jpg",
+      "width": 5942,
+      "height": 3961,
+      "bytes": 4319533,
+      "sha256": "cbf5c3632525267a9a76c17188108e93bf1578e32f7ba807cc037a16596deb09",
+      "annotation_file": "annotations/04_canned_seafood_and_shelf_labels.json",
+      "annotation_counts": {
+        "Price": 89,
+        "Product": 321
+      },
+      "suggested_use": "Dense canned seafood variants, electronic price labels, repeated facings and visible spaces. Price-to-product association requires annotation."
+    },
+    {
+      "file": "05_snacks_and_occlusion.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/024.jpg",
+      "width": 4000,
+      "height": 3000,
+      "bytes": 2287601,
+      "sha256": "0ee0c42dbc4cc97e310d7cc34b85fe50f90c8c7e3195ac0e8dc58630e1bbb5f8",
+      "annotation_file": "annotations/05_snacks_and_occlusion.json",
+      "annotation_counts": {
+        "Product": 53,
+        "Price": 20
+      },
+      "suggested_use": "Flexible reflective bags, multiple scripts, angled camera and rail occlusion; useful harder case."
+    },
+    {
+      "file": "06_dairy_repeated_facings.jpg",
+      "original_archive_path": "Supermarket shelves/Supermarket shelves/images/031.jpg",
+      "width": 5760,
+      "height": 3840,
+      "bytes": 5231890,
+      "sha256": "5b3aeb12d485a75b2e4679f2642c07b8f497083136dfa5b25f06547149c69d8a",
+      "annotation_file": "annotations/06_dairy_repeated_facings.json",
+      "annotation_counts": {
+        "Product": 262,
+        "Price": 46
+      },
+      "suggested_use": "Many similar dairy bottles, size/flavour differences and Cyrillic text. International stress test, not a US/Albertsons assortment."
+    }
+  ]
+}
