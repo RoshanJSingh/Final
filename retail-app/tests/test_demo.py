@@ -1,11 +1,17 @@
 """Combined entry point and inventory integrity; all inference is mocked."""
 import hashlib
 import json
+import pytest
+from retail import saved_runs
 from fastapi.testclient import TestClient
 import demo
 from retail.models import Extraction, ProductObservation
 
 client=TestClient(demo.app)
+
+@pytest.fixture(autouse=True)
+def isolated_runs(monkeypatch,tmp_path):
+    monkeypatch.setattr(saved_runs,'RUNS_DIR',tmp_path/'runs')
 
 
 def test_only_two_retail_assets_are_served():

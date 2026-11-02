@@ -98,10 +98,15 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({ bayId, uploadId, sto
           if (saved && (saved.upload_id !== uploadId || saved.bay_id !== bayId || saved.photo_url !== uploaded.photo_url)) throw new Error('The saved analysis does not match this photo. Please upload it again.');
           if (active) { setPhoto(uploaded); setScan(saved ?? emptyAnalysis(store!, bay!, uploaded)); setResultReady(!!saved); }
         } else {
-          const response = await fetch(`${retail ? '/data/retail' : '/data'}/scans/${bayId}.json`, { signal: controller.signal });
+          const [response, completedResponse] = await Promise.all([
+            fetch(`${retail ? '/data/retail' : '/data'}/scans/${bayId}.json`, { signal: controller.signal }),
+            retail ? fetch(`/api/retail/results/${bayId}`, { signal: controller.signal }).catch(() => null) : Promise.resolve(null),
+          ]);
           if (!response.ok) throw new Error('The sample analysis could not be loaded. Please try again.');
-          const saved = await response.json() as ScanResult;
-          if (active) { setScan(saved); setResultReady(true); }
+          const sample = await response.json() as ScanResult;
+          const completed = completedResponse?.ok ? (await completedResponse.json()).result as ScanResult | null : null;
+          const saved = completed && completed.bay_id === bayId && completed.photo_url === sample.photo_url ? completed : sample;
+          if (active) { setScan(saved); setResultReady(true); if (retail) setMode(saved.mode); }
         }
       } catch (err) {
         if (active && !controller.signal.aborted) setLoadError(err instanceof Error ? err.message : 'This analysis could not be loaded.');
@@ -198,11 +203,12 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({ bayId, uploadId, sto
       onOpenInfo={() => setTrustOpen(true)} />
     <main className="flex-1 max-w-[1700px] w-full mx-auto p-4 sm:p-6 lg:p-8">
       <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div><div className="text-[11px] text-slate-400 mb-1"><button onClick={onHome} className="hover:text-blue-700">Home</button><span className="mx-2">/</span>Analysis</div><h1 className="text-xl font-bold text-slate-900 tracking-tight">{uploadId ? 'Your shelf analysis' : bay.name}</h1><p className="text-xs text-slate-500 mt-1">{uploadId ? `Comparing your uploaded photo with ${bay.name}.` : retail ? 'Retail photograph and saved manual readings, compared with a simulated product catalogue.' : 'Sample photograph and saved recognition, compared with a simulated planogram.'}</p></div>
+        <div><div className="text-[11px] text-slate-400 mb-1"><button onClick={onHome} className="hover:text-blue-700">Home</button><span className="mx-2">/</span>Analysis</div><h1 className="text-xl font-bold text-slate-900 tracking-tight">{uploadId ? 'Your shelf analysis' : bay.name}</h1><p className="text-xs text-slate-500 mt-1">{uploadId ? `Comparing your uploaded photo with ${bay.name}.` : retail ? (scan.mode === 'live' ? 'Retail photograph and completed company readings, compared with a simulated product catalogue.' : 'Retail photograph and saved manual readings, compared with a simulated product catalogue.') : 'Sample photograph and saved recognition, compared with a simulated planogram.'}</p></div>
         <button onClick={() => setTrustOpen(true)} className="inline-flex items-center self-start gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-medium"><ShieldCheck className="w-3.5 h-3.5 text-blue-600" /> Recognition &amp; accuracy</button>
       </div>
       {scan.comparison_suggestion && <div role="status" className="mb-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div><p className="text-sm font-semibold text-amber-950">Check the selected comparison shelf</p><p className="text-xs text-amber-800 leading-5 mt-1">{scan.comparison_suggestion.message} {scan.comparison_suggestion.matching_titles} titles match {scan.comparison_suggestion.bay_name}.</p></div>{uploadId && <button disabled={isScanning || isComparing} onClick={() => void changeComparisonShelf(scan.comparison_suggestion!.bay_id)} className="shrink-0 self-start rounded-lg bg-white border border-amber-300 px-3 py-2 text-xs font-semibold text-amber-950 disabled:opacity-50">{isComparing ? 'Updating comparison…' : 'Compare with suggested shelf'}</button>}</div>}
       {uploadId && resultReady && <p className="text-[11px] text-slate-500 mb-4">Change the shelf above to compare these same readings with another catalogue. No new image analysis is required.</p>}
+      {retail && scan.run_id && <p className="mb-4 text-[11px] text-slate-500">Completed retail readings are saved locally. Reloading reapplies the matching rules without another model request.</p>}
       {resultReady && <ResultsSummary scan={scan} />}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         <div className="order-2 lg:order-1 lg:col-span-3 min-w-0"><Step1Planogram bay={bay} items={scan.planogram_items} highlightedSku={highlightedSku} onSelectSku={setHighlightedSku} /></div>

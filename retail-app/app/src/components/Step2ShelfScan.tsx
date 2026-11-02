@@ -62,7 +62,8 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
     onHoverItem(item.id);
     onSelectItem(item);
   };
-  const verificationLabel = (item: ShelfItem) => item.verification_status === 'single_pass'
+  const verificationLabel = (item: ShelfItem) => item.verification_status === 'manual'
+    ? 'Manual reading · Not a model result' : item.verification_status === 'single_pass'
     ? 'Single reading · Not independently verified' : item.title_status === 'agreed'
     ? 'Title agreed across two readings' : item.title_status === 'single_read'
     ? 'Title readable in one pass' : item.title_status === 'uncertain'
@@ -168,12 +169,14 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
         {!!activeTooltip.title_variants?.length && activeTooltip.title_variants.some(title => title !== activeTooltip.title) && <div className="text-slate-500 mt-2">Combined readings: {activeTooltip.title_variants.join(' · ')}</div>}
         {!!activeTooltip.unconfirmed_variants?.length && <div className="text-slate-500 mt-2">Possible alternate text (not used to establish agreement): {activeTooltip.unconfirmed_variants.join(' · ')}</div>}
         {activeTooltip.visible_text && <div className="text-slate-600 mt-1">Visible text: “{activeTooltip.visible_text}”</div>}
+        {retail && !!activeTooltip.review_reasons?.length && <p className="mt-2 text-amber-900">{activeTooltip.review_reasons.join(' ')}</p>}
         {activeTooltip.misplaced_reason && <div className="text-amber-800 mt-1">{activeTooltip.misplaced_reason}</div>}
       </div>}
       {resultReady && <details className="border-t border-slate-200 text-xs">
         <summary className="p-3 cursor-pointer font-medium text-slate-700">Inspect the names read from this photo</summary>
-        <p className="px-3 pb-3 text-xs text-slate-600 leading-5">{retail ? 'One entry per product identity and package format. Repeated packages do not increase the totals. The manual sample is partial; background and obscured products may be unlisted.' : 'This list also includes titles assigned to other shelves or not in the demo catalogue. Only titles assigned to the selected shelf contribute to the results above.'}</p><div className="max-h-48 overflow-y-auto divide-y divide-slate-100">
-          {scan.shelf_items.map(item => <button key={item.id} onClick={() => selectItem(item)} className="block w-full text-left px-3 py-2 hover:bg-blue-50"><span className="font-medium text-slate-800">{item.title}</span><span className="block text-[11px] text-slate-500 mt-0.5">{item.status_label} · {item.position_status === 'needs_review' ? 'Location unconfirmed' : verificationLabel(item)}</span></button>)}
+        <p className="px-3 pb-3 text-xs text-slate-600 leading-5">{retail ? 'Readings are linked to product names, variants and selling formats. Repeated sightings count once in the summary; ambiguous readings may link to several possible catalogue entries.' : 'This list also includes titles assigned to other shelves or not in the demo catalogue. Only titles assigned to the selected shelf contribute to the results above.'}</p><div className="max-h-48 overflow-y-auto divide-y divide-slate-100">
+          {retail && scan.recognition_diagnostics && <p className="px-3 py-2 text-[11px] text-slate-600 bg-slate-50">Model returned {scan.recognition_diagnostics.package_readings} package readings: {scan.recognition_diagnostics.catalogue_linked_readings} linked to catalogue candidates, {scan.recognition_diagnostics.unlinked_readings} unlinked. Repeated sightings can describe the same product.</p>}
+          {scan.shelf_items.map(item => <button key={item.id} onClick={() => selectItem(item)} className="block w-full text-left px-3 py-2 hover:bg-blue-50"><span className="font-medium text-slate-800">{item.title}</span><span className="block text-[11px] text-slate-500 mt-0.5">{item.status_label} · {item.position_status === 'needs_review' ? 'Location unconfirmed' : verificationLabel(item)}</span>{retail && item.visible_text && <span className="block text-[11px] text-slate-500 mt-1">Read: “{item.visible_text}”</span>}</button>)}
         </div>
       </details>}
       {resultReady && !!scan.unresolved_readings?.length && <details className="border-t border-slate-200 text-xs"><summary className="p-3 cursor-pointer font-medium text-slate-500">Other text needing review</summary><p className="px-3 pb-2 text-[11px] text-slate-500 leading-5">Author-only text, placeholders, uncertain fragments and possible duplicate readings remain available for inspection. They are not claimed as additional books.</p><div className="max-h-40 overflow-y-auto divide-y divide-slate-100">{scan.unresolved_readings.map((item,index) => <div key={index} className="px-3 py-2 text-[11px] text-slate-500"><span className="font-medium">{item.visible_text || item.title}</span><span className="block">{item.exclusion_reason === 'author_only' ? 'Author-only text' : item.exclusion_reason === 'placeholder' ? 'No readable title' : item.exclusion_reason === 'possible_duplicate' ? `Possible alternate reading of ${item.related_title}` : 'Uncertain text'} · excluded from title count</span></div>)}</div></details>}

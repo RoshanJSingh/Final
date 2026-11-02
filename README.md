@@ -40,9 +40,9 @@ These are generic retail scenes, not verified Albertsons stores. Source and publ
 
 ## Fresh analysis
 
-Saved samples work without company sign-in or inference. To run a new analysis, sign in with Straive and explicitly select **Run a new analysis**, then **Analyze again**. Retail reads the chosen original photo using the grocery prompt; the catalogue is not passed to the model. Matching checks product name/variant and visible selling format. Unknown or conflicting attributes remain for review. Failure preserves the current UI result and never substitutes the manual sample.
+Saved samples work without company sign-in or inference. To run a new analysis, sign in with Straive and explicitly select **Run a new analysis**, then **Analyze again**. Retail reads the chosen original photo using the grocery prompt; the catalogue is not passed to the model. Matching accepts equivalent brand/name/variant field splits and common package wording, then checks the visible selling format. Unreadable price, barcode, location, or an unspecified size do not invalidate a readable product identity; required mini-can sizes and pack counts still need confirmation. Unknown or conflicting attributes remain for review. Failure preserves the current UI result and never substitutes the manual sample.
 
-Live company authentication and real grocery inference quality have not been validated here. All development inference checks were mocked; no paid model call was made. A live sample result is session-only and refresh returns to the saved sample, matching the original sample workflow.
+Live company authentication and real grocery inference quality have not been validated here. All development inference checks were mocked; no paid model call was made. Completed retail readings are saved locally under ignored `retail-app/output/retail-runs/`, with the photo hash and raw structured evidence. Reloading restores and recompares the last completed reading without a new model call. Failed scans preserve the last completed reading; no company session token is stored. Runs made before the matching fix were not retained and require one fresh explicit analysis.
 
 ## Validation
 

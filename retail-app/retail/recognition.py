@@ -7,6 +7,25 @@ from .models import Extraction
 PROMPT = (Path(__file__).resolve().parents[2] / 'planning/Albertsons_Retail_Prompts.md').read_text().split('```text\n')[1].split('```')[0]
 PROMPT += "\nAlso include package_format_text for each product: carton, plastic bottle, glass bottle multipack, mini cans, can carton, can, or water case, only if its visible packaging supports it. Otherwise use null.\n"
 
+PROMPT += """
+Describe the visible retail selling unit, not the crop-wide stock total. If a
+printed carton or cardboard carrier visibly groups bottles/cans, report that
+multipack as one selling unit rather than counting both carrier and contents.
+Loose bottles/cans remain individual units. Do not infer a multipack from
+adjacent loose bottles, and do not invent a pack count.
+
+Separate product_name_text and variant_text naturally; both are matched later.
+Use package_format_text for visible packaging (PET/plastic bottle, glass bottle
+multipack, mini-can multipack, can carton, single can, cereal carton, water case).
+If material or carrier is not clear, say bottle/carton or use null. Do not guess.
+
+Make uncertainty_reasons field-specific: size_unreadable, pack_count_unreadable,
+barcode_unreadable, name_unreadable, variant_unreadable, package_format_unreadable,
+or boundary_uncertain. If glare/occlusion affects only size or the boundary, use
+that field-specific reason. Unreadable price/size/barcode does not make the
+readable product name uncertain. These are not validated exact-SKU identities.
+"""
+
 async def extract(raw,token,emit, *, transport=None):
     """Experimental 1600px/15% overlap grid; evaluated settings are not claimed."""
     image=load_image(raw)

@@ -20,6 +20,7 @@ export interface ShelfItem {
   catalogue_title?: string | null;
   catalogue_status?: 'matched' | 'unlisted' | 'needs_review';
   review_reasons?: string[];
+  recognition_evidence?: Record<string, unknown>;
   title_variants?: string[];
   unconfirmed_variants?: string[];
   related_title?: string;
@@ -108,6 +109,13 @@ export interface ScanResult {
   selection_reason?: string;
   run_id?: string;
   comparison_version?: number;
+  matching_version?: string;
+  recognition_diagnostics?: {
+    package_readings: number;
+    named_readings: number;
+    catalogue_linked_readings: number;
+    unlinked_readings: number;
+  };
   reading_mode?: 'single_pass' | 'verified';
   unresolved_readings?: Array<Pick<ShelfItem, 'title' | 'visible_text' | 'exclusion_reason' | 'related_title'>>;
   candidate_cleanup?: { input_groups: number; displayed_titles: number; unresolved_groups: number; merged_alias_groups: number };

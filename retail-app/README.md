@@ -7,7 +7,7 @@ This directory now contains the combined Retail + Bookshelf frontend. Follow the
 - `app/src/components/` is copied from the original bookshelf UI and shared by both demos. `demoContext.ts` supplies retail terminology without changing bookshelf behaviour.
 - `scripts/build_retail_data.py` maintains the curated catalogue and partial manual samples for the two selected images.
 - `data/retail-inventory.json` records inventory assumptions, readable product identities, unknown attributes, image hashes and representative box estimates.
-- `retail/recognition.py` reuses the grocery extraction implementation and adds visible package-format evidence. `demo.py` compares live readings conservatively against the complete catalogue.
+- `retail/recognition.py` reuses the grocery extraction implementation and adds visible package-format evidence. `retail/identity.py` matches brand/name/variant evidence and selling formats against the complete catalogue. Completed readings are stored locally by `retail/saved_runs.py` and can be re-compared without another company request.
 
 The earlier `retail/main.py`, `compare.py`, `data/catalogue.json`, `cereal-readings.json` and annotation notes are retained as legacy prototype fixtures for their existing backend tests. They are **not** the combined demo's runtime catalogue, sample API or frontend. The old six-image library and fictional Pantry bay are not exposed by `demo.py`.
 
