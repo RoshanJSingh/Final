@@ -16,6 +16,7 @@ class ProductObservation(Versioned):
     size_text: str | None = None
     pack_count_text: str | None = None
     barcode_text: str | None = None
+    package_format_text: str | None = None
     visible_text: str = ''
     box_2d: list[int] | None = None
     is_partial: bool = False

@@ -1,38 +1,58 @@
-# Retail shelf-audit development kit
+# Shelf Check · Retail & Bookshelf
 
-Inputs for adapting the original **Straive Shelf Check** application into a grocery shelf-audit concept for an Albertsons discussion. The retail adaptation has not yet been implemented.
+One home screen offers **Retail** and **Bookshelf**. Retail uses exactly the two supplied grocery photographs and the same catalogue/photo/review panels and results summary as the original bookshelf demo. The original source in `bookshelf-original/` is unchanged.
 
-## Repository layout
+## Run locally
 
-- `bookshelf-original/`: original company-auth application, including the latest local results-summary changes. Preserve this baseline; implement the adaptation in `retail-app/`.
-- `planning/Albertsons_Retail_Plan.md`: researched datasets, workflow, architecture and evaluation plan.
-- `planning/Albertsons_Retail_Prompts.md`: implementation instructions and proposed retail extraction prompt.
-- `planning/SOURCE_SNAPSHOT.json`: original revision and SHA-256 hashes of copied source files. Includes local uncommitted UI changes; this is not a pristine checkout of that revision.
-- `retail-images/`: six original-resolution retail photographs, original Product/Price annotations, preview, provenance and licence information.
-
-The original app retains Straive Foundry login and inference integration. No personal API keys or session tokens are included. The retail photographs are generic retail scenes, not verified Albertsons stores. Their annotations do not establish exact SKUs, expected assortment or stockouts. Historical bookshelf scores do not measure retail performance.
-
-Retail image publisher: [Humans in the Loop](https://humansintheloop.org/resources/datasets/supermarket-shelves-dataset/), published as CC0; downloaded from its [Kaggle account](https://www.kaggle.com/datasets/humansintheloop/supermarket-shelves-dataset). See `retail-images/README.md` and `manifest.json`. The original book benchmark is [Bookshelf Benchmark](https://atharva-729.github.io/bookshelf-benchmark/); retail dataset licensing does not apply to the original book assets or application.
-
-## Codex cloud task
-
-Select this repository in a Codex cloud environment. Ask Codex to inspect the source and install the Python and Node dependencies needed by the project. The original README documents runtime requirements.
-
-Paste this task:
-
-> Implement the retail shelf-audit application described in planning/Albertsons_Retail_Plan.md and section A of planning/Albertsons_Retail_Prompts.md. Use bookshelf-original/ as the source and retail-images/ as the already-downloaded image dataset. These repository-relative paths override all laptop paths in the planning documents. Keep bookshelf-original/ unchanged and build in retail-app/. Preserve Straive Foundry authentication. Inspect images and annotations; do not invent unreadable attributes or claim Albertsons-store provenance. Complete backend, frontend and mocked browser validation. Do not make paid inference calls, merge or deploy. Leave the changes ready for review, with validation results and local run instructions.
-
-The two planning documents predate image acquisition: their statements that no archive has been downloaded are historical. Six selected raw photos and matching annotations are now included. Further SKU annotation and catalogue curation remain to be done.
-
-## Validate the baseline
-
-Run from `bookshelf-original/`, after installing dependencies:
+Requires Python 3.13 and Node 22.12+.
 
 ```sh
-python -m pytest -q
-npm --prefix app ci
+cd /Users/roshansingh/Desktop/Final_demo/Retail_demo
+python3 -m venv retail-app/.venv
+retail-app/.venv/bin/python -m pip install -r retail-app/requirements.txt
+npm --prefix retail-app/app ci
+bash run_demo.sh
+```
+
+Open **http://127.0.0.1:8001/**. `PORT` and `HOST` can override the launcher defaults.
+
+- `/` — Retail and Bookshelf buttons.
+- `/retail` — exactly two photo choices.
+- `/retail/analysis?bay=bay_cereal` — cereal catalogue, photo, and review checks.
+- `/retail/analysis?bay=bay_drinks` — soft drink and multipack catalogue, photo, and review checks.
+- `/bookshelf` — original bookshelf home, Foundry authentication, upload flow, six samples, analysis and model comparison.
+
+Retail accepts no additional photos. The six-image source archive is retained for provenance but is not exposed by the combined app. The two active retail JPEGs match the user attachments byte-for-byte. Original bookshelf photos remain available only for the bookshelf workflow.
+
+## Retail inventory and sample evidence
+
+`retail-app/data/retail-inventory.json` is an inspectable inventory and annotation manifest. Rebuild its store/scan fixtures with `python3 retail-app/scripts/build_retail_data.py` (the launcher does this automatically).
+
+- 25 cereal identities, separated by product name and visible variant. Repeated cartons and carton sizes are grouped when size has not been transcribed.
+- 19 drink identities, separated by name, variant and selling format. Plastic bottles, glass multipacks, mini-can packs and can cartons have different internal IDs.
+- Internal IDs are demo catalogue identities, not verified retailer SKUs or GTINs. Unknown sizes, prices, sales rates, exact facings and true physical stock are `null`.
+- Scenario on-hand quantities are **12 cereal selling units** or **8 drink selling units** per catalogue entry. A multipack/case is one selling unit. These quantities are simulated, not counted from the image.
+- Saved readings are **partial manual transcriptions**, with representative estimated package boxes. Cereal: **21 matched + 1 possible + 3 not identified = 25**. Drinks: **18 matched + 1 possible + 0 not identified = 19**.
+- Three cereal names visible in top overstock are in the catalogue but intentionally outside the saved front-shelf transcription. They are described as not transcribed, not missing stock. The cropped Raisin Bran carton and silver Monster can require identity review. No silver-can flavour is guessed.
+- Gaps trigger a general shelf-layout check, never an invented missing SKU. Review actions change only session acknowledgements and never inventory or the result counts.
+
+These are generic retail scenes, not verified Albertsons stores. Source and publisher-declared licence are recorded in `retail-images/manifest.json`. No grocery accuracy or ROI claim is made.
+
+## Fresh analysis
+
+Saved samples work without company sign-in or inference. To run a new analysis, sign in with Straive and explicitly select **Run a new analysis**, then **Analyze again**. Retail reads the chosen original photo using the grocery prompt; the catalogue is not passed to the model. Matching checks product name/variant and visible selling format. Unknown or conflicting attributes remain for review. Failure preserves the current UI result and never substitutes the manual sample.
+
+Live company authentication and real grocery inference quality have not been validated here. All development inference checks were mocked; no paid model call was made. A live sample result is session-only and refresh returns to the saved sample, matching the original sample workflow.
+
+## Validation
+
+```sh
+cd retail-app
+.venv/bin/python -m pytest -q
 npm --prefix app run build
+cd ../bookshelf-original
+../retail-app/.venv/bin/python -m pytest -q
 node --experimental-strip-types --test qa/test_scan_stream.mjs qa/test_foundry_auth.mjs qa/test_analysis_summary.mjs
 ```
 
-These unit/build checks do not establish live Foundry access. Test real company authentication/inference separately in the appropriate company environment. Generated output, dependencies, screenshots and run logs are excluded from this repository.
+See `retail-app/qa/COMBINED_DEMO_QA.md` for browser checks. Changes remain local; no push, PR, or deployment was requested.
