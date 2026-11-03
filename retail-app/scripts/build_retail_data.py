@@ -67,7 +67,7 @@ REVIEW = {
 
 def write(path, obj):
  path.parent.mkdir(parents=True, exist_ok=True)
- path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n')
+ path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 def build():
  catalogue = {}; bays=[]; scans={}; sources=[]; records=[]

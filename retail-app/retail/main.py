@@ -26,7 +26,7 @@ lock=asyncio.Lock()
 catalogue=json.loads((ROOT/'data/catalogue.json').read_text())
 products=[ProductMaster(**p) for p in catalogue['products']]
 allocations=[ShelfAllocation(**a) for a in catalogue['allocations']]
-PROMPT=(ROOT.parent/'planning/Albertsons_Retail_Prompts.md').read_text().split('```text\n')[1].split('```')[0]
+PROMPT=(ROOT.parent/'planning/Albertsons_Retail_Prompts.md').read_text(encoding='utf-8').split('```text\n')[1].split('```')[0]
 
 
 def result(extraction,bay,source):

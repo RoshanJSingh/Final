@@ -10,7 +10,7 @@ from itertools import permutations
 
 from .compare import same_size
 
-MATCHING_VERSION = 'retail-identity-3'
+MATCHING_VERSION = 'retail-identity-4'
 
 
 def norm(value):
@@ -85,8 +85,13 @@ def variant_aliases(variant):
 
 def name_candidates(obs,catalogue):
     name=obs.product_name_text or ''
-    # Brand alone cannot match all of a manufacturer's catalogue.
-    if not name.strip(): return []
+    # Consumer family names can be transcribed entirely into brand_text.
+    # Manufacturer-only labels (e.g. Great Value) are never product names.
+    if not name.strip():
+        consumer = brand_key(obs.brand_text)
+        if consumer not in {'coca cola','monster energy','sprite','fanta','aquafina','chex','cheerios'}:
+            return []
+        name = consumer
     parts=[name]
     if obs.variant_text: parts.append(obs.variant_text)
     if obs.brand_text: parts.append(brand_key(obs.brand_text))
@@ -105,7 +110,7 @@ def name_candidates(obs,catalogue):
         # 'Cherry cola' and 'Original Taste cola' express the same flavour as
         # Cherry/Original. The generic word cola never selects Original.
         if family=='coca cola': supplied_variant-=key('coca cola')
-        if supplied_variant and supplied_variant not in variant_aliases(variant): continue
+        if supplied_variant and not any(supplied_variant == alias or (supplied_variant < alias and alias <= key(" ".join(parts))) for alias in variant_aliases(variant)): continue
         aliases={key(item['product_name']),key(item['brand']+' '+item['product_name'])}
         # Some default product names omit the word Original in the catalogue.
         if variant=='original':

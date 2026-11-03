@@ -1,0 +1,729 @@
+{
+  "scope": "Two-photo development evaluation; not general accuracy or fresh extraction quality.",
+  "judge_enabled_in_app": false,
+  "judge_experiment": "not run",
+  "methods": {
+    "A_baseline": {
+      "cases": 23,
+      "correct_auto": {
+        "numerator": 5,
+        "denominator": 13
+      },
+      "incorrect_auto": {
+        "numerator": 0,
+        "denominator": 5
+      },
+      "possible": {
+        "numerator": 1,
+        "denominator": 23
+      },
+      "missed_supported": {
+        "numerator": 8,
+        "denominator": 13
+      },
+      "appropriate_abstention": {
+        "numerator": 10,
+        "denominator": 10
+      },
+      "retrieval_coverage": {
+        "numerator": 16,
+        "denominator": 16
+      },
+      "latency_seconds": 0.02095316699706018,
+      "model_calls": 0,
+      "rows": [
+        {
+          "id": "bay_drinks-1-p1",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-001",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-1-p2",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-1-p8",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "bay_drinks-1-p12",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-3-p10",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-002",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-4-p7",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-008",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-4-p8",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-009",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-5-p30",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-015",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-5-p33",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-016",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-6-p27",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-017",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-6-p32",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-1-p1",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-023",
+          "selected": "R-01-023",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-1-p12",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-002",
+          "selected": "R-01-002",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-2-p26",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-013",
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": true,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-14",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-002",
+          "selected": "R-02-002",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-15",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-16",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-17",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-18",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-006",
+          "selected": "R-02-006",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-19",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-20",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-21",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": true,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-22",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-018",
+          "selected": "R-02-018",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        }
+      ]
+    },
+    "B_improved": {
+      "cases": 23,
+      "correct_auto": {
+        "numerator": 13,
+        "denominator": 13
+      },
+      "incorrect_auto": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "possible": {
+        "numerator": 4,
+        "denominator": 23
+      },
+      "missed_supported": {
+        "numerator": 0,
+        "denominator": 13
+      },
+      "appropriate_abstention": {
+        "numerator": 10,
+        "denominator": 10
+      },
+      "retrieval_coverage": {
+        "numerator": 16,
+        "denominator": 16
+      },
+      "latency_seconds": 0.02959104100591503,
+      "model_calls": 0,
+      "rows": [
+        {
+          "id": "bay_drinks-1-p1",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-001",
+          "selected": "R-02-001",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-1-p2",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": true,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-1-p8",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "bay_drinks-1-p12",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": true,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-3-p10",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-002",
+          "selected": "R-02-002",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-4-p7",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-008",
+          "selected": "R-02-008",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-4-p8",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-009",
+          "selected": "R-02-009",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-5-p30",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-015",
+          "selected": "R-02-015",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-5-p33",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-016",
+          "selected": "R-02-016",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-6-p27",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-02-017",
+          "selected": "R-02-017",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_drinks-6-p32",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": null,
+          "selected": null,
+          "possible": true,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-1-p1",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-023",
+          "selected": "R-01-023",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-1-p12",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-002",
+          "selected": "R-01-002",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "bay_cereal-2-p26",
+          "source": "saved_model_observation",
+          "split": "development",
+          "expected_auto": "R-01-013",
+          "selected": "R-01-013",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-14",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-002",
+          "selected": "R-02-002",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-15",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-16",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-17",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-18",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-006",
+          "selected": "R-02-006",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        },
+        {
+          "id": "regression-19",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-20",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": false,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-21",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": null,
+          "selected": null,
+          "possible": true,
+          "correct_auto": false,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": true,
+          "candidate_retrieved": null
+        },
+        {
+          "id": "regression-22",
+          "source": "synthetic_regression",
+          "split": "regression",
+          "expected_auto": "R-02-018",
+          "selected": "R-02-018",
+          "possible": false,
+          "correct_auto": true,
+          "incorrect_auto": false,
+          "missed_supported": false,
+          "appropriate_abstention": false,
+          "candidate_retrieved": true
+        }
+      ]
+    }
+  },
+  "saved_readings": {
+    "bay_cereal": {
+      "run_id": "2cb014819ce447f59fef008259ef2353",
+      "image_sha256": "611eabd697c798990ae31a6e07371d4b57a8217c7551bba585cfe8b5e3efba74",
+      "observation_count": 141,
+      "missing_product_name": 28,
+      "historical_model_calls": 9,
+      "historical_total_tokens": 59926,
+      "cost_usd": null,
+      "accuracy": "Not fully labelled: counts below are acceptance counts, not correct-match metrics.",
+      "A_baseline": {
+        "automatic_observations": {
+          "numerator": 55,
+          "denominator": 141
+        },
+        "unique_catalogue_identities": {
+          "numerator": 21,
+          "denominator": 25
+        }
+      },
+      "B_improved": {
+        "automatic_observations": {
+          "numerator": 58,
+          "denominator": 141
+        },
+        "unique_catalogue_identities": {
+          "numerator": 21,
+          "denominator": 25
+        }
+      }
+    },
+    "bay_drinks": {
+      "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+      "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+      "observation_count": 244,
+      "missing_product_name": 172,
+      "historical_model_calls": 11,
+      "historical_total_tokens": 93843,
+      "cost_usd": null,
+      "accuracy": "Not fully labelled: counts below are acceptance counts, not correct-match metrics.",
+      "A_baseline": {
+        "automatic_observations": {
+          "numerator": 23,
+          "denominator": 244
+        },
+        "unique_catalogue_identities": {
+          "numerator": 4,
+          "denominator": 19
+        }
+      },
+      "B_improved": {
+        "automatic_observations": {
+          "numerator": 71,
+          "denominator": 244
+        },
+        "unique_catalogue_identities": {
+          "numerator": 14,
+          "denominator": 19
+        }
+      }
+    }
+  }
+}

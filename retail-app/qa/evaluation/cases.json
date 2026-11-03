@@ -1,0 +1,595 @@
+[
+  {
+    "id": "bay_drinks-1-p1",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-001",
+    "candidate_target": "R-02-001",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p1",
+      "crop_id": "1",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "ORIGINAL TASTE",
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "plastic bottle",
+      "visible_text": "ORIGINAL TASTE Coca-Cola",
+      "box_2d": [
+        56,
+        25,
+        235,
+        87
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "barcode_unreadable",
+        "pack_count_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_drinks-1-p2",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": null,
+    "candidate_target": "R-02-001",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p2",
+      "crop_id": "1",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": null,
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "plastic bottle",
+      "visible_text": "Coca-Cola",
+      "box_2d": [
+        185,
+        94,
+        234,
+        177
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "barcode_unreadable",
+        "pack_count_unreadable",
+        "variant_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_drinks-1-p8",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p8",
+      "crop_id": "1",
+      "brand_text": null,
+      "product_name_text": null,
+      "variant_text": null,
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "can",
+      "visible_text": "",
+      "box_2d": [
+        319,
+        73,
+        347,
+        143
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "barcode_unreadable",
+        "pack_count_unreadable",
+        "name_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_drinks-1-p12",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": null,
+    "candidate_target": "R-02-006",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p12",
+      "crop_id": "1",
+      "brand_text": "Sprite",
+      "product_name_text": null,
+      "variant_text": "mini",
+      "size_text": "7.5 oz",
+      "pack_count_text": "10",
+      "barcode_text": null,
+      "package_format_text": "can carton",
+      "visible_text": "Sprite mini 10 7.5 oz cans",
+      "box_2d": [
+        385,
+        308,
+        446,
+        358
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-3-p10",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-002",
+    "candidate_target": "R-02-002",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "3-p10",
+      "crop_id": "3",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "CHERRY",
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "plastic bottle",
+      "visible_text": "Coca-Cola CHERRY",
+      "box_2d": [
+        41,
+        923,
+        225,
+        984
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-4-p7",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-008",
+    "candidate_target": "R-02-008",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "4-p7",
+      "crop_id": "4",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "Georgia Peach",
+      "size_text": "4-12 FL OZ BOTTLES (48 FL OZ)",
+      "pack_count_text": "4",
+      "barcode_text": null,
+      "package_format_text": "glass bottle multipack",
+      "visible_text": "Georgia Peach Coca-Cola 4-12 FL OZ BOTTLES (48 FL OZ) 4-355 mL BOTTLES (1.42 L)",
+      "box_2d": [
+        654,
+        27,
+        789,
+        96
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-4-p8",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-009",
+    "candidate_target": "R-02-009",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "4-p8",
+      "crop_id": "4",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "California Raspberry",
+      "size_text": "4-12 FL OZ BOTTLES (48 FL OZ)",
+      "pack_count_text": "4",
+      "barcode_text": null,
+      "package_format_text": "glass bottle multipack",
+      "visible_text": "California Raspberry Coca-Cola 4-12 FL OZ BOTTLES (48 FL OZ) 4-355 mL BOTTLES (1.42 L)",
+      "box_2d": [
+        656,
+        87,
+        789,
+        151
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-5-p30",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-015",
+    "candidate_target": "R-02-015",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "5-p30",
+      "crop_id": "5",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "CHERRY",
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "can carton",
+      "visible_text": "CHERRY Coca-Cola Coca-Cola CHERRY FLAVORED",
+      "box_2d": [
+        864,
+        580,
+        934,
+        637
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-5-p33",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-016",
+    "candidate_target": "R-02-016",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "5-p33",
+      "crop_id": "5",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "ORANGE VANILLA",
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "can carton",
+      "visible_text": "NEW ORANGE VANILLA Coca-Cola",
+      "box_2d": [
+        916,
+        644,
+        979,
+        700
+      ],
+      "is_partial": true,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "bay_drinks-6-p27",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": "R-02-017",
+    "candidate_target": "R-02-017",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "6-p27",
+      "crop_id": "6",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "VANILLA",
+      "size_text": null,
+      "pack_count_text": "12",
+      "barcode_text": null,
+      "package_format_text": "can carton",
+      "visible_text": "VANILLA Coca-Cola",
+      "box_2d": [
+        867,
+        760,
+        954,
+        831
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_drinks-6-p32",
+    "source": "saved_model_observation",
+    "run_id": "8e84ba2b90b6452689119e8ab8c49f2b",
+    "image_sha256": "dfb7e2d358f17c28b8dd730496e4524d57eccdc01922cdaac1e45859614b017c",
+    "split": "development",
+    "expected_auto": null,
+    "candidate_target": "R-02-017",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "6-p32",
+      "crop_id": "6",
+      "brand_text": "Coca-Cola",
+      "product_name_text": null,
+      "variant_text": "VANILLA",
+      "size_text": null,
+      "pack_count_text": "12",
+      "barcode_text": null,
+      "package_format_text": "can carton",
+      "visible_text": "Coca-Cola",
+      "box_2d": [
+        949,
+        767,
+        979,
+        818
+      ],
+      "is_partial": true,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "occluded"
+      ]
+    }
+  },
+  {
+    "id": "bay_cereal-1-p1",
+    "source": "saved_model_observation",
+    "run_id": "2cb014819ce447f59fef008259ef2353",
+    "image_sha256": "611eabd697c798990ae31a6e07371d4b57a8217c7551bba585cfe8b5e3efba74",
+    "split": "development",
+    "expected_auto": "R-01-023",
+    "candidate_target": "R-01-023",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p1",
+      "crop_id": "1",
+      "brand_text": "Great Value",
+      "product_name_text": "Rice Crisps",
+      "variant_text": null,
+      "size_text": null,
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "carton",
+      "visible_text": "Great Value Rice Crisps",
+      "box_2d": [
+        23,
+        44,
+        69,
+        126
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "size_unreadable",
+        "barcode_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_cereal-1-p12",
+    "source": "saved_model_observation",
+    "run_id": "2cb014819ce447f59fef008259ef2353",
+    "image_sha256": "611eabd697c798990ae31a6e07371d4b57a8217c7551bba585cfe8b5e3efba74",
+    "split": "development",
+    "expected_auto": "R-01-002",
+    "candidate_target": "R-01-002",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "1-p12",
+      "crop_id": "1",
+      "brand_text": "General Mills",
+      "product_name_text": "Chex",
+      "variant_text": "Chocolate",
+      "size_text": "FAMILY SIZE",
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "carton",
+      "visible_text": "FAMILY SIZE Chocolate Chex Gluten Free",
+      "box_2d": [
+        134,
+        126,
+        285,
+        223
+      ],
+      "is_partial": false,
+      "uncertain": true,
+      "uncertainty_reasons": [
+        "barcode_unreadable"
+      ]
+    }
+  },
+  {
+    "id": "bay_cereal-2-p26",
+    "source": "saved_model_observation",
+    "run_id": "2cb014819ce447f59fef008259ef2353",
+    "image_sha256": "611eabd697c798990ae31a6e07371d4b57a8217c7551bba585cfe8b5e3efba74",
+    "split": "development",
+    "expected_auto": "R-01-013",
+    "candidate_target": "R-01-013",
+    "observation": {
+      "schema_version": "1.0",
+      "instance_id": "2-p26",
+      "crop_id": "2",
+      "brand_text": "Cheerios",
+      "product_name_text": "OAT CRUNCH",
+      "variant_text": "CINNAMON",
+      "size_text": "26 OZ (1 LB 10 OZ) (737g)",
+      "pack_count_text": null,
+      "barcode_text": null,
+      "package_format_text": "carton",
+      "visible_text": "FAMILY SIZE Cheerios OAT CRUNCH CINNAMON 26 OZ (1 LB 10 OZ) (737g)",
+      "box_2d": [
+        338,
+        456,
+        520,
+        559
+      ],
+      "is_partial": false,
+      "uncertain": false,
+      "uncertainty_reasons": []
+    }
+  },
+  {
+    "id": "regression-14",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": "R-02-002",
+    "candidate_target": "R-02-002",
+    "observation": {
+      "instance_id": "regression-14",
+      "product_name_text": "Coke",
+      "variant_text": "Cherry",
+      "package_format_text": "plastic bottle",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  },
+  {
+    "id": "regression-15",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-15",
+      "product_name_text": "Coca-Cola Cherry",
+      "variant_text": "Vanilla",
+      "package_format_text": "plastic bottle",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  },
+  {
+    "id": "regression-16",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-16",
+      "product_name_text": "Sprite Mini",
+      "variant_text": null,
+      "package_format_text": "mini cans",
+      "pack_count_text": "6",
+      "size_text": "7.5 fl oz"
+    }
+  },
+  {
+    "id": "regression-17",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-17",
+      "product_name_text": "Sprite Mini",
+      "variant_text": null,
+      "package_format_text": "mini cans",
+      "pack_count_text": "10",
+      "size_text": "12 fl oz"
+    }
+  },
+  {
+    "id": "regression-18",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": "R-02-006",
+    "candidate_target": "R-02-006",
+    "observation": {
+      "instance_id": "regression-18",
+      "product_name_text": "Sprite Mini",
+      "variant_text": null,
+      "package_format_text": "mini cans",
+      "pack_count_text": "10",
+      "size_text": "7.5 fl oz"
+    }
+  },
+  {
+    "id": "regression-19",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-19",
+      "product_name_text": "Coca-Cola Cherry Vanilla",
+      "variant_text": null,
+      "package_format_text": "plastic bottle",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  },
+  {
+    "id": "regression-20",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-20",
+      "product_name_text": "Unknown Acme Cola",
+      "variant_text": null,
+      "package_format_text": "can",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  },
+  {
+    "id": "regression-21",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": null,
+    "candidate_target": null,
+    "observation": {
+      "instance_id": "regression-21",
+      "product_name_text": "Monster Energy",
+      "variant_text": "silver",
+      "package_format_text": "can",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  },
+  {
+    "id": "regression-22",
+    "source": "synthetic_regression",
+    "split": "regression",
+    "expected_auto": "R-02-018",
+    "candidate_target": "R-02-018",
+    "observation": {
+      "instance_id": "regression-22",
+      "product_name_text": "Coca-Cola",
+      "variant_text": "Zero Sugar",
+      "package_format_text": "can carton",
+      "pack_count_text": null,
+      "size_text": null
+    }
+  }
+]

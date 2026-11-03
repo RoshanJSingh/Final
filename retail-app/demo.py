@@ -2,6 +2,7 @@
 import asyncio
 import contextlib
 import json
+import logging
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,10 +21,12 @@ from server.recognition import RecognitionError
 from retail.recognition import extract
 from retail.identity import MATCHING_VERSION, match_identity
 from retail.saved_runs import load_run, save_run
+from retail.deduplication import deduplicate
 
 PUBLIC = ROOT / 'app/public'
 DIST = ROOT / 'app/dist'
 app = FastAPI(title='Shelf Check · Retail & Bookshelf')
+logger = logging.getLogger(__name__)
 # Keep every original bookshelf endpoint and its authentication/inference path.
 # Do not import the legacy retail.main module: it redirects global book uploads.
 for route in bookshelf_api.routes:
@@ -32,13 +35,13 @@ for route in bookshelf_api.routes:
 
 
 def store():
-    return json.loads((PUBLIC / 'data/retail/store.json').read_text())
+    return json.loads((PUBLIC / 'data/retail/store.json').read_text(encoding='utf-8'))
 
 
 def get_sample(bay_id):
     if bay_id not in {b['id'] for b in store()['bays']}:
         raise HTTPException(404, 'Retail shelf not found')
-    return json.loads((PUBLIC / f'data/retail/scans/{bay_id}.json').read_text())
+    return json.loads((PUBLIC / f'data/retail/scans/{bay_id}.json').read_text(encoding='utf-8'))
 
 
 def live_result(extraction, bay_id):
@@ -47,7 +50,8 @@ def live_result(extraction, bay_id):
     catalogue = list(store()['catalogue'].values())
     assigned = {p['sku'] for p in result['planogram_items']}
     observations=[]; tasks=[]; matched=set(); possible=set(); linked_readings=0
-    for obs in extraction.products:
+    products, duplicates = deduplicate(extraction.products)
+    for obs in products:
         identity=match_identity(obs,catalogue)
         candidates=identity.candidates
         linked_readings+=bool(candidates)
@@ -82,10 +86,16 @@ def live_result(extraction, bay_id):
         tasks.append(dict(id='unseen-'+sku,type='missing_item',severity='medium',badge='Not identified',title=item['title'],author=item['brand'],sku=sku,
             headline='Not identified in this model reading. It may be hidden, unreadable, or missed. Confirm in person before changing stock.',suggested_action='Mark shelf check reviewed',requires_review=True))
     result.update(mode='live',model='Company grocery vision',reading_mode='single_pass',scanned_at=datetime.now(timezone.utc).isoformat(),shelf_items=observations,action_tasks=tasks)
-    result['metrics'].update(shelf_items_detected=len(observations),matched_count=len(matched),review_count=len(possible),missing_count=len(unseen))
+    result['metrics'].update(shelf_items_detected=len(products),matched_count=len(matched),review_count=len(possible),missing_count=len(unseen))
+    result['missing_items']=[]
+    result['misplaced_items']=[]
+    result['metrics']['planogram_compliance_pct']=None
     result['matching_version']=MATCHING_VERSION
     result['recognition_diagnostics']={
         'package_readings':len(extraction.products),
+        'retained_readings':len(products),
+        'duplicate_readings':duplicates,
+        'candidate_rows':len(observations),
         'named_readings':sum(bool(o.product_name_text) for o in extraction.products),
         'catalogue_linked_readings':linked_readings,
         'unlinked_readings':sum(o['sku'] is None for o in observations),
@@ -147,6 +157,7 @@ async def scan_retail(body: RetailScan, authorization: str | None = Header(defau
                 except RecognitionError as exc:
                     await queue.put({'status':'error','message':str(exc)})
                 except Exception:
+                    logger.exception('Unexpected retail analysis failure')
                     await queue.put({'status':'error','message':'Live retail analysis did not complete. The previous result is unchanged.'})
         task=asyncio.create_task(work())
         try:

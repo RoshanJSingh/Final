@@ -17,8 +17,12 @@ RUNS_DIR=Path(__file__).resolve().parents[1]/'output/retail-runs'
 def save_run(bay_id,raw,extraction,audit,completed_at):
     if bay_id not in {'bay_cereal','bay_drinks'}: raise ValueError('Invalid retail bay')
     run_id=uuid4().hex
+    from .recognition import EXTRACTION_VERSION, PROMPT_HASH
+    from .identity import MATCHING_VERSION
     payload={
         'schema_version':1,'run_id':run_id,'bay_id':bay_id,
+        'extraction_version':EXTRACTION_VERSION,'prompt_sha256':PROMPT_HASH,
+        'matching_version_at_capture':MATCHING_VERSION,
         'image_sha256':hashlib.sha256(raw).hexdigest(),'completed_at':completed_at,
         'extraction':extraction.model_dump(),
         'sections':[{'tile':s.get('tile'),'bounds':s.get('bounds'),'finish_reason':s.get('finish_reason'),'usage':s.get('usage')} for s in audit],

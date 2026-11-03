@@ -55,7 +55,7 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
       setWaitSeconds(Math.floor((Date.now() - startedAt) / 1000));
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [isScanning, progress?.completed_calls, progress?.message, progress?.status]);
+  }, [isScanning, progress?.completed_calls]);
 
   const selectItem = (item: ShelfItem) => {
     setActiveTooltip(item);
@@ -113,7 +113,7 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
         </div>}
         <p className="text-xs text-slate-500 leading-relaxed">
           {mode === 'live'
-            ? 'New analyses read each full-resolution section once, without rotation or a second reading.'
+            ? (retail ? 'Reads overlapping full-resolution sections. An oversized response may trigger one split retry. Incomplete scans keep your previous result.' : 'New analyses read each full-resolution section once, without rotation or a second reading.')
             : retail ? 'Saved sample: partial manual product readings. No model call is made. Select Run a new analysis for a fresh company model scan.' : 'Saved sample: previously recorded recognition results with no new LLM call or charge. Select Run a new analysis only for a fresh model scan.'}
         </p>
         {isUpload && mode === 'live' && !resultReady && !isScanning && <p className="mt-2 rounded-md border border-amber-200 bg-amber-50 p-2 text-xs text-amber-900">
@@ -121,7 +121,7 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
         </p>}
         {!liveAvailable && !error && <p className="text-[11px] text-amber-800 mt-1">Company sign-in and inference access are required for live photo analysis.</p>}
         {error && <div role="alert" className="mt-2 p-2 text-xs text-red-800 border border-red-200 bg-red-50 rounded-md">{error}</div>}
-        {resultReady && scan.reading_mode === 'single_pass' && <p className="text-[11px] text-blue-700 mt-2">Single-pass analysis · No rotated reread · Locations are estimates</p>}
+        {resultReady && scan.reading_mode === 'single_pass' && <p className="text-[11px] text-blue-700 mt-2">{retail ? 'Section-based analysis · Locations are estimates' : 'Single-pass analysis · No rotated reread · Locations are estimates'}</p>}
         <div className="mt-3 pt-3 border-t border-slate-200/60 text-xs space-y-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="font-medium text-slate-700">{resultReady ? (isUpload ? 'Your photo · Analysis complete' : scan.mode === 'live' ? 'Sample · New analysis' : 'Sample · Saved analysis') : 'Your photo · Awaiting analysis'}</span>
@@ -146,14 +146,14 @@ export const Step2ShelfScan: React.FC<Step2ShelfScanProps> = ({
         </div>
         {isScanning && <div role="status" aria-live="polite" className="absolute inset-0 bg-slate-950/90 z-20 flex flex-col items-center justify-center p-6 text-white text-center">
           <RefreshCw className="w-10 h-10 text-blue-400 animate-spin mb-4" />
-          <div className="text-sm font-bold mb-2">{mode === 'live' ? ['Preparing image', 'Reading full-resolution sections', 'Independent verification', 'Comparing planogram'][scanStep] : 'Loading saved reply'}</div>
+          <div className="text-sm font-bold mb-2">{progress?.message || (mode === 'live' ? ['Preparing image', 'Reading full-resolution sections', 'Independent verification', 'Comparing planogram'][scanStep] : 'Loading saved reply')}</div>
           <p className="text-xs text-blue-200 max-w-xs mb-4">{scanStep === 0 ? 'Preparing your photo for a detailed reading.' : scanStep === 1 ? 'Reading visible titles across the shelf.' : scanStep === 2 ? 'Taking a second look at each section.' : 'Comparing recognized titles with the shelf planogram.'}</p>
-          {!!progress?.total_checks && <>
+          {!!(progress?.total_checks ?? progress?.total_calls) && <>
             <div className="text-xs mb-2">
-              {progress.completed_calls ?? 0} of {progress.total_calls} reading checks completed
-              {(progress.completed_calls ?? 0) < (progress.total_calls ?? 0) && ` · Check in progress · ${Math.floor(waitSeconds / 60)}m ${waitSeconds % 60}s`}
+              {progress.completed_calls ?? 0} of {progress.total_checks ?? progress.total_calls} reading checks completed
+              {(progress.completed_calls ?? 0) < (progress.total_checks ?? progress.total_calls ?? 0) && ` · Check in progress · ${Math.floor(waitSeconds / 60)}m ${waitSeconds % 60}s`}
             </div>
-            <progress className="w-64 max-w-full accent-blue-500" value={progress.completed_calls ?? 0} max={Math.max(progress.total_calls ?? 0, 1)} />
+            <progress className="w-64 max-w-full accent-blue-500" value={progress.completed_calls ?? 0} max={Math.max(progress.total_checks ?? progress.total_calls ?? 0, 1)} />
           </>}
           <p className="text-[11px] text-slate-400 mt-3">Each model check is limited to 4 minutes.</p>
           <button onClick={onCancel} className="mt-4 px-4 py-1.5 rounded border border-slate-500 text-xs">Cancel scan</button>

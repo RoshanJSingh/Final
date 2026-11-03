@@ -44,6 +44,12 @@ function analysisError(error: unknown): string {
   if (/unavailable|could not be reached|HTTP 5\d\d/i.test(message)) {
     return 'Live photo analysis is currently unavailable. Your photo and previous result are unchanged; try again later.';
   }
+  if (/rate-limited|HTTP 429/i.test(message)) {
+    return 'Company inference is rate-limited. Wait a little before trying again; your photo and previous result are unchanged.';
+  }
+  if (/HTTP 400/i.test(message)) {
+    return 'The company inference service rejected the analysis request. Your photo and previous result are unchanged; contact the app administrator.';
+  }
   if (/time limit|timed out|deadline/i.test(message)) {
     return 'A model reading took longer than the 4-minute limit, so the scan stopped. Your photo is still available; try again later.';
   }
@@ -106,7 +112,7 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({ bayId, uploadId, sto
           const sample = await response.json() as ScanResult;
           const completed = completedResponse?.ok ? (await completedResponse.json()).result as ScanResult | null : null;
           const saved = completed && completed.bay_id === bayId && completed.photo_url === sample.photo_url ? completed : sample;
-          if (active) { setScan(saved); setResultReady(true); if (retail) setMode(saved.mode); }
+          if (active) { setResolvedIds(new Set()); setHoveredItemId(null); setHighlightedSku(null); setScan(saved); setResultReady(true); if (retail) setMode(saved.mode); }
         }
       } catch (err) {
         if (active && !controller.signal.aborted) setLoadError(err instanceof Error ? err.message : 'This analysis could not be loaded.');
@@ -117,7 +123,7 @@ export const AnalysisPage: React.FC<AnalysisPageProps> = ({ bayId, uploadId, sto
   }, [store, bay, bayId, uploadId, retail]);
 
   const runScan = async (requestedMode = mode) => {
-    if (isScanning || isComparing || !scan) return;
+    if (scanController.current || isScanning || isComparing || !scan) return;
     if (requestedMode === 'live' && auth.status !== 'signed-in') {
       setError(auth.status === 'connection-error'
         ? 'Company sign-in could not be checked. Retry the status check before starting analysis.'

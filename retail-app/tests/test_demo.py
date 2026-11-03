@@ -1,17 +1,84 @@
 """Combined entry point and inventory integrity; all inference is mocked."""
 import hashlib
+import io
 import json
 import pytest
 from retail import saved_runs
+import httpx
 from fastapi.testclient import TestClient
 import demo
+from scripts.build_retail_data import write as write_retail_json
+from retail.recognition import extract as extract_retail, provider_schema
 from retail.models import Extraction, ProductObservation
+from server.recognition import RecognitionError
+from PIL import Image
 
 client=TestClient(demo.app)
 
 @pytest.fixture(autouse=True)
 def isolated_runs(monkeypatch,tmp_path):
     monkeypatch.setattr(saved_runs,'RUNS_DIR',tmp_path/'runs')
+
+
+def test_retail_json_writer_uses_utf8(tmp_path):
+    path=tmp_path/'store.json'
+    write_retail_json(path,{'brand':'Kellogg’s'})
+    assert json.loads(path.read_bytes().decode('utf-8'))=={'brand':'Kellogg’s'}
+
+
+def test_retail_provider_schema_removes_unsupported_keywords():
+    schema=provider_schema()
+    encoded=json.dumps(schema)
+    for unsupported in ('"const"', '"default"', '"title"', '"maxItems"', '"maxLength"'):
+        assert unsupported not in encoded
+    assert '"enum": ["1.0"]' in encoded
+    assert schema['additionalProperties'] is False
+
+
+def test_retail_extraction_uses_provider_compatible_schema():
+    image=io.BytesIO()
+    Image.new('RGB',(32,32)).save(image,format='PNG')
+    requested=[]
+    events=[]
+
+    def respond(request):
+        body=json.loads(request.content)
+        schema=body['generationConfig']['responseJsonSchema']
+        encoded=json.dumps(schema)
+        assert '"const"' not in encoded and '"default"' not in encoded and '"maxItems"' not in encoded
+        requested.append(request)
+        event={'candidates':[{'content':{'parts':[{'text':'{"products":[],"labels":[]}'}]},'finishReason':'STOP'}]}
+        return httpx.Response(200,text=f'data: {json.dumps(event)}\n\n',headers={'content-type':'text/event-stream'})
+
+    async def run():
+        async def emit(event):
+            events.append(event)
+        extraction,_=await extract_retail(image.getvalue(),'test-token',emit,transport=httpx.MockTransport(respond))
+        assert extraction==Extraction(products=[],labels=[])
+
+    import asyncio
+    asyncio.run(run())
+    assert len(requested)==1
+    assert events[0]['message']=='Reading section 1 of 1. Keep this window open.'
+    assert events[-1]['message']=='Completed section 1 of 1.'
+    assert events[-1]['completed_calls']==events[-1]['total_checks']==1
+
+
+def test_retail_inference_http_errors_are_actionable():
+    image=io.BytesIO()
+    Image.new('RGB',(32,32)).save(image,format='PNG')
+
+    def reject(_request):
+        return httpx.Response(400)
+
+    async def run():
+        async def emit(_event):
+            pass
+        with pytest.raises(RecognitionError,match='HTTP 400'):
+            await extract_retail(image.getvalue(),'test-token',emit,transport=httpx.MockTransport(reject))
+
+    import asyncio
+    asyncio.run(run())
 
 
 def test_only_two_retail_assets_are_served():
